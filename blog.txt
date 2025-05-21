@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratham's Blog | Thoughts on Technology & Life</title>
+    <meta name="description" content="Personal blog of Pratham featuring articles on technology, programming, and life experiences.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            math-shift: 14px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        main {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+        }
+
+        aside {
+            position: sticky;
+            top: 2rem;
+            align-self: start;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            color: #ecf0f1;
+            
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .post-meta span {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .post-meta i {
+            margin-right: 0.5rem;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-color);
+            color: var(--primary-color);
+            margin: 0 0.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .newsletter-form input {
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .popular-posts {
+            list-style: none;
+        }
+
+        .popular-post {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .popular-post:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .popular-post-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-right: 1rem;
+        }
+
+        .p1 {
+            color: #333;
+        }
+        .popular-post-title {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .popular-post-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .p2 {
+            color: black;
+        }
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: static;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="Pratham 1.JPG" alt="Pratham's Profile" class="profile-img">
+            <h1>Pratham's Blog</h1>
+            <p class="tagline">Thoughts on Technology, Programming & Life</p>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <section id="blog">
+                <h2>Latest Posts</h2>
+                
+                <article class="post">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span><i class="far fa-comment"></i> 12 comments</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=300&q=80" alt="Post Image" class="post-image">
+                    <h3>Getting Started with React Hooks</h3>
+                    <div class="tags">
+                        <a href="#" class="tag">React</a>
+                        <a href="#" class="tag">JavaScript</a>
+                        <a href="#" class="tag">Frontend</a>
+                    </div>
+                    <p>React Hooks have revolutionized how we write React components. In this post, I'll walk you through the basics of useState, useEffect, and useContext hooks with practical examples that you can apply to your projects immediately...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+                
+                <article class="post">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span><i class="far fa-comment"></i> 7 comments</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=300&q=80" alt="Post Image" class="post-image">
+                    <h3>Building a REST API with Node.js and Express</h3>
+                    <div class="tags">
+                        <a href="#" class="tag">Node.js</a>
+                        <a href="#" class="tag">Backend</a>
+                        <a href="#" class="tag">API</a>
+                    </div>
+                    <p>Creating robust APIs is a fundamental skill for modern web developers. In this tutorial, I'll show you how to build a complete RESTful API using Node.js and Express, covering routing, middleware, error handling, and database integration...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+                
+                <article class="post">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar-alt"></i> May 10, 2023</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span><i class="far fa-comment"></i> 15 comments</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=300&q=80" alt="Post Image" class="post-image">
+                    <h3>My Journey into Full Stack Development</h3>
+                    <div class="tags">
+                        <a href="#" class="tag">Career</a>
+                        <a href="#" class="tag">Learning</a>
+                        <a href="#" class="tag">Web Development</a>
+                    </div>
+                    <p>Transitioning from a different field into tech wasn't easy, but it was incredibly rewarding. In this personal reflection, I share the challenges I faced, the resources that helped me most, and the lessons I learned along the way...</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+                
+                <div class="pagination">
+                    <a href="#" class="btn">Older Posts</a>
+                </div>
+            </section>
+            
+            <section id="about" class="about-section">
+                <h2>About Me</h2>
+                <p>Hello! I'm Pratham, a full-stack developer with a passion for creating elegant solutions to complex problems. I specialize in JavaScript technologies including React, Node.js, and Express.</p>
+                <p>When I'm not coding, you can find me hiking in the mountains, reading science fiction, or experimenting with new recipes in the kitchen. I believe in lifelong learning and sharing knowledge with others, which is why I started this blog.</p>
+                <p>My goal is to document my journey in tech, share what I learn, and help others who are starting their own development journeys.</p>
+            </section>
+            
+            <section id="projects">
+                <h2>Featured Projects</h2>
+                <div class="project">
+                    <h3>Task Management App</h3>
+                    <p>A full-stack application built with React, Node.js, and MongoDB that helps teams organize their workflow. Features include real-time updates, task assignment, and progress tracking.</p>
+                    <a href="#" class="read-more">View Project <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="project">
+                    <h3>E-commerce Platform</h3>
+                    <p>An online store built with Next.js and Stripe integration. Includes product catalog, shopping cart, user authentication, and payment processing.</p>
+                    <a href="#" class="read-more">View Project <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </section>
+            
+            <section id="contact">
+                <h2>Get In Touch</h2>
+                <p>Have a question or want to collaborate on a project? I'd love to hear from you!</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </section>
+        </main>
+        
+        <aside>
+            <div class="sidebar-widget">
+                <h3>About The Blog</h3>
+                <p1>This blog focuses on web development, programming tips, career advice, and occasional personal reflections on life in tech.</p1>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Subscribe</h3>
+                <p2>Get the latest posts delivered to your inbox</p2>
+                <form class="newsletter-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Popular Posts</h3>
+                <ul class="popular-posts">
+                    <li class="popular-post">
+                        <img src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&h=80&q=80" alt="Popular Post" class="popular-post-img">
+                        <div>
+                            <h4 class="popular-post-title">10 JavaScript Tips for Cleaner Code</h4>
+                            <div class="popular-post-date">April 22, 2023</div>
+                        </div>
+                    </li>
+                    <li class="popular-post">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&h=80&q=80" alt="Popular Post" class="popular-post-img">
+                        <div>
+                            <h4 class="popular-post-title">CSS Grid vs Flexbox: When to Use Each</h4>
+                            <div class="popular-post-date">March 15, 2023</div>
+                        </div>
+                    </li>
+                    <li class="popular-post">
+                        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&h=80&q=80" alt="Popular Post" class="popular-post-img">
+                        <div>
+                            <h4 class="popular-post-title">Setting Up VS Code for Productivity</h4>
+                            <div class="popular-post-date">February 5, 2025</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Categories</h3>
+                <div class="tags">
+                    <a href="#" class="tag">JavaScript</a>
+                    <a href="#" class="tag">React</a>
+                    <a href="#" class="tag">Node.js</a>
+                    <a href="#" class="tag">CSS</a>
+                    <a href="#" class="tag">Career</a>
+                    <a href="#" class="tag">Tutorials</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Follow Me</h3>
+                <div class="social-links">
+                    <a href="https://x.com/PrathamMistry17"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/prathammist"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pratham-mistry-7aa46722b/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-dev"></i></a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <nav>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-dev"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Pratham's Blog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
